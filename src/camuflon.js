@@ -44,6 +44,7 @@ export default function Camuflon() {
           </div>
         </section>
       </main>
+      <Footer />
     </div>
   );
 }
@@ -89,7 +90,7 @@ export function Nav() {
                   </div>
 
   return(
-    <nav className="navbar bd-navbar is-primary">
+    <nav className="navbar">
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
           <img src={process.env.PUBLIC_URL + "/logo-small.jpg"} />
@@ -104,6 +105,18 @@ export function Nav() {
       {navLinks}
       {endNavLinks}
     </nav>
+  )
+}
+
+export function Footer() {
+  return(
+    <footer className="footer">
+      <div className="container">
+        <div className="columns">
+          <div className="column">Copyright &copy; 2021 Claudio Vigliarolo & Jaime Venturini for NOI Hackathon SFScon Edition</div>
+        </div>
+      </div>
+    </footer>
   )
 }
 

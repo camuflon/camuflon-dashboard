@@ -2,3 +2,6 @@
   width: 144px;
   height: 36px;
 }
+.navbar {
+  border-bottom: 1px solid #00d1b2;
+}
