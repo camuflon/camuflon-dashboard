@@ -134,9 +134,9 @@ class Login extends Component {
                     <input
                       className="input"
                       type="text"
-                      placeholder="Username"
-                      name="username"
-                      value={this.state.identifier}
+                      placeholder="Company name"
+                      name="companyname"
+                      value={this.state.companyname}
                       onChange={this.onChangeIdentifier}
                     />
                   </div>
@@ -147,9 +147,9 @@ class Login extends Component {
                     <input
                       className="input"
                       type="password"
-                      placeholder="Password"
-                      name="password"
-                      value={this.state.password}
+                      placeholder="Token"
+                      name="token"
+                      value={this.state.token}
                       onChange={this.onChangePassword}
                     />
                   </div>

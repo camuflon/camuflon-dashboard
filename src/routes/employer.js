@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Routes, Route, NavLink as Link } from "react-router-dom";
 import UserService from "../services/user.service";
 import { Bar } from 'react-chartjs-2';
 
@@ -50,24 +49,26 @@ export default class Employer extends Component {
 
     this.user = UserService.getUser();
     this.state = {
-      locations: []
+      locations: [],
+      isLoaded: false
     }
   }
 
   componentDidMount() {
-    UserService.getCompaniesLocations().then(
+    UserService.getCompanyLocations().then(
       result => {
-        this.state.locations = result.data;
-        //console.log(this.state);
-        /*that.setState({
-          locations: result.data
+        /*this.setState({
+          locations: result.data,
+          isLoaded: true
         });*/
+        console.log(this.state);
       }
     );
   }
 
   render() {
-    const { locations } = this.state;
+    const { isLoaded, locations } = this.state;
+    console.log(locations);
 
     return (
       <div>
@@ -85,9 +86,9 @@ export default class Employer extends Component {
         <div className="columns">
           <div className="column is-one-third">
             <AsideMenu />
-            {locations.map((location,index) => {
+            /*{locations.map((location,index) => {
               return <li>{location}</li>
-            })}
+            })}*/
           </div>
           <div className="column">
             <ListRooms/>
@@ -148,7 +149,7 @@ export function ListRooms() {
       </div>
       <div className="columns">
         <div className="column">
-          Average time spent: 124 minutes in the last week
+          Average time spent: 115 minutes in the last week
         </div>
       </div>
       <div className="columns">

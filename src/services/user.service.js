@@ -12,9 +12,19 @@ class UserService {
     return JSON.parse(localStorage.getItem('user'));
   }
 
-  getCompaniesLocations() {
+  getCompanyLocations() {
     let user = JSON.parse(localStorage.getItem('user'));
     return axios.get(API_URL + 'companies/'+ user.company._id + '/locations', { headers: authHeader() });
+  }
+
+  getCompanyLocationsBeacons() {
+    let user = JSON.parse(localStorage.getItem('user'));
+    return axios.get(API_URL + 'companies/'+ user.company._id + '/beacons', { headers: authHeader() });
+  }
+
+  getCompanyStatistics() {
+    let user = JSON.parse(localStorage.getItem('user'));
+    return axios.get(API_URL + 'companies/'+ user.company._id + '/statistics', { headers: authHeader() });
   }
 }
 

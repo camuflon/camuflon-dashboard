@@ -16,6 +16,7 @@ import Login from "./login";
 import Dashboard from "./routes/dashboard";
 import Employer from "./routes/employer";
 import Employee from "./routes/employee";
+import Test from "./routes/test";
 
 import Bulma from 'bulma';
 import './index.css';
@@ -40,6 +41,7 @@ export default class Camuflon extends React.Component {
                     <Route path="dashboard" element={<Dashboard />}>
                       <Route path="employer" element={<Employer />}></Route>
                       <Route path="employee" element={<Employee />}></Route>
+                      <Route path="test" element={<Test />}></Route>
                     </Route>
                     <Route
                       path="*"

@@ -16,7 +16,9 @@ export default class Dashboard extends Component {
 
     if (!user) {
       AuthService.logout();
-      alert("Not logged in!");
+      console.log("Not logged in!");
+      //this.props.navigate("/");
+      //window.location.reload();
     }
   }
 
