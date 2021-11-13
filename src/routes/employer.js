@@ -86,9 +86,6 @@ export default class Employer extends Component {
         <div className="columns">
           <div className="column is-one-third">
             <AsideMenu />
-            /*{locations.map((location,index) => {
-              return <li>{location}</li>
-            })}*/
           </div>
           <div className="column">
             <ListRooms/>
