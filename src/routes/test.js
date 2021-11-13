@@ -16,52 +16,40 @@ export default class Test extends Component {
     }
   }
 
-  componentDidMount() {
-    UserService.getCompanyLocations().then(
-      resultLoc => {
-        this.setState({
-          locations: resultLoc.data,
-        });
-        UserService.getCompanyLocationsBeacons().then(
-          resultBeac => {
-            this.setState({
-              beacons: resultBeac.data,
-            });
-
-            UserService.getCompanyStatistics().then(
-              resultStat => {
-                this.setState({
-                  statistics: resultStat.data,
-                  isLoaded: true
-                });
-                console.log(this.state);
-              }
-            )
-          }
-        )
-      }
-    );
+  async componentDidMount() {
+    const locations = (await UserService.getCompanyLocations()).data;
+    this.setState({ locations });
+    const beacons = (await UserService.getCompanyLocationsBeacons()).data;
+    this.setState({
+      beacons
+    });
+    const statistics = (await UserService.getCompanyStatistics()).data;
+    this.setState({
+      statistics: statistics,
+      isLoaded: true
+    });
+    console.log(this.state)
   }
 
   renderBeacon(locationId) {
     let tmpBeacons = this.state.beacons.filter((beacon) => beacon.locationId === locationId);
     let beaconId = "";
     return tmpBeacons.map(beacon => {
-        //console.log(beacon.beaconMinor);
-        if(beaconId !== beacon.beaconId) {
-          //console.log("inside");
-          beaconId = beacon.beaconId;
-          return(
-            <li><a>{beaconId}</a></li>
-          )
-        }
+      //console.log(beacon.beaconMinor);
+      if (beaconId !== beacon.beaconId) {
+        //console.log("inside");
+        beaconId = beacon.beaconId;
+        return (
+          <li><a>{beaconId}</a></li>
+        )
+      }
     });
   }
 
   renderStatistics(locationId) {
-    let locStatistic = this.state.statistics.filter((singleLoc) => singleLoc.locationId === locationId);
+    let locStatistic = this.state.statistics ? this.state.statistics.filter((singleLoc) => singleLoc.locationId === locationId) : undefined;
     //console.log(locStatistic);
-    if(locStatistic !== undefined) {
+    if (locStatistic !== undefined) {
       let locNameArr = this.state.locations.filter((singleLoc) => singleLoc._id === locationId);
       let locName = locNameArr[0].name;
       let statisticTimestamp = [];
@@ -75,7 +63,7 @@ export default class Test extends Component {
 
       //*****<div className="column"><Bar data={statisticTimestamp} /></div>
 
-      return(
+      return (
         <div className="singleLocation">
           <div className="columns">
             <div className="column">
@@ -89,11 +77,7 @@ export default class Test extends Component {
           </div>
           <div className="columns">
 
-            //Questa parte deve essere sistemata!!
-
-            //*****
-
-            //end
+            // todo
           </div>
           <div className="columns">
             <div className="column">
@@ -103,7 +87,7 @@ export default class Test extends Component {
         </div>
       )
     } else {
-      return(
+      return (
         <div>Error, no statistics found!</div>
       )
     }
@@ -115,7 +99,7 @@ export default class Test extends Component {
     if (!isLoaded) {
       return <div>Loading...</div>;
     } else {
-      return(
+      return (
         <div>
           <div className="columns">
             <div className="column">
@@ -127,7 +111,7 @@ export default class Test extends Component {
               <h4 className="header title is-4">Here you can manage and view the statistics of your rooms and beacons.</h4>
             </div>
           </div>
-          <br/>
+          <br />
           <div className="columns">
             <div className="column is-one-third">
               <aside className="menu">
@@ -136,9 +120,9 @@ export default class Test extends Component {
                     <li key={location._id}>
                       <a>{location.name}</a>
                       <ul>
-                      {
-                      this.renderBeacon(location._id)
-                      }
+                        {
+                          this.renderBeacon(location._id)
+                        }
                       </ul>
                     </li>
                   ))}
