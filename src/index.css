@@ -11,3 +11,17 @@
 .homeImage img {
   display: block;
 }
+
+.presentationImgWrapper {
+  text-align: center;
+}
+.presentationImg {
+  height: 300px;
+}
+
+.modulesBox {
+  text-align: center;
+}
+.modulesBox img {
+  height: 180px;
+}

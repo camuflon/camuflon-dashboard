@@ -4,11 +4,11 @@ import UserService from "../services/user.service";
 import { Bar } from 'react-chartjs-2';
 
 const data = {
-  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+  labels: ['Monday', 'Tuesday', 'Wednsday', 'Thurdsay', 'Friday', 'Saturday', 'Sunday'],
   datasets: [
     {
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
+      label: 'Minutes spent',
+      data: [123, 115, 135, 95, 80, 100, 5],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -16,6 +16,7 @@ const data = {
         'rgba(75, 192, 192, 0.2)',
         'rgba(153, 102, 255, 0.2)',
         'rgba(255, 159, 64, 0.2)',
+        'rgba(86, 27, 126, 0.2)'
       ],
       borderColor: [
         'rgba(255, 99, 132, 1)',
@@ -24,6 +25,7 @@ const data = {
         'rgba(75, 192, 192, 1)',
         'rgba(153, 102, 255, 1)',
         'rgba(255, 159, 64, 1)',
+        'rgba(86, 27, 126, 1)'
       ],
       borderWidth: 1,
     },
@@ -45,14 +47,33 @@ const options = {
 export default class Employer extends Component {
   constructor(props) {
     super(props);
+
+    this.user = UserService.getUser();
+    this.state = {
+      locations: []
+    }
+  }
+
+  componentDidMount() {
+    UserService.getCompaniesLocations().then(
+      result => {
+        this.state.locations = result.data;
+        //console.log(this.state);
+        /*that.setState({
+          locations: result.data
+        });*/
+      }
+    );
   }
 
   render() {
+    const { locations } = this.state;
+
     return (
       <div>
         <div className="columns">
           <div className="column">
-            <h3 className="header title is-2 is-spaced">Hello Employer!</h3>
+            <h3 className="header title is-2 is-spaced">Hello {this.user.company.name}!</h3>
           </div>
         </div>
         <div className="columns">
@@ -61,10 +82,12 @@ export default class Employer extends Component {
           </div>
         </div>
         <br/>
-
         <div className="columns">
           <div className="column is-one-third">
             <AsideMenu />
+            {locations.map((location,index) => {
+              return <li>{location}</li>
+            })}
           </div>
           <div className="column">
             <ListRooms/>
@@ -78,6 +101,7 @@ export default class Employer extends Component {
 
 export function AsideMenu() {
   //Get all Majors and minors
+  //console.log(this.state);
 
   return(
     <aside className="menu">

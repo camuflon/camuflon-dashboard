@@ -34,8 +34,6 @@ class Login extends Component {
   };
 
   handleLogin = (e) => {
-    console.log("prima", this.props);
-
     e.preventDefault();
 
     this.setState({
@@ -49,7 +47,7 @@ class Login extends Component {
       //if (this.checkBtn.context._errors.length === 0) {
       AuthService.login(this.state.identifier, this.state.password).then(
         (arg) => {
-          this.props.navigate("/dashboard");
+          this.props.navigate("/dashboard/employer");
           window.location.reload();
         },
         (error) => {
@@ -73,37 +71,7 @@ class Login extends Component {
     }
   };
 
-  /*
-  const navigate = useNavigate();
-  let tabActive = 1;
-
-  const [state, setState] = useState({
-    username: "",
-    password: "",
-  });
-
-  const handleChange = (e) => {
-    setState({
-      ...state,
-      [e.target.name]: e.target.value,
-    });
-  }
-
-  const handleSubmitEy = (e) => {
-      e.preventDefault();
-
-      navigate("/dashboard/employer");
-  };
-
-  const handleSubmitEe = (e) => {
-      e.preventDefault();
-
-      navigate("/dashboard/employee");
-  };*/
-
   render() {
-    console.log(this.props);
-
     return (
       <div className="columns">
         <div className="column is-one-quarter">&nbsp;</div>

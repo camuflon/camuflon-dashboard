@@ -8,8 +8,13 @@ class UserService {
     return axios.get(API_URL + 'all');
   }
 
-  getEmployerBoard() {
-    return axios.get(API_URL + 'companies', { headers: authHeader() });
+  getUser() {
+    return JSON.parse(localStorage.getItem('user'));
+  }
+
+  getCompaniesLocations() {
+    let user = JSON.parse(localStorage.getItem('user'));
+    return axios.get(API_URL + 'companies/'+ user.company._id + '/locations', { headers: authHeader() });
   }
 }
 

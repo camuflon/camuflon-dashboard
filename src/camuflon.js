@@ -140,7 +140,69 @@ function doLogout() {
 
 function Home() {
   return (
-    <div className="container">hey</div>
+    <div className="container">
+      <div className="columns">
+        <div className="column"><h1 className="header title is-1 is-centered">Welcome</h1></div>
+      </div>
+      <div className="columns">
+        <div className="column">
+          <div className="block">
+            This is the official website of the project <strong>Camuflon</strong>!
+          </div>
+        </div>
+      </div><br/><br/>
+      <div className="columns">
+        <div className="column">
+          <h3 className="header title is-3 has-text-primary">What is Camuflon?</h3>
+          <div className="block">
+            <i>«È un grosso scimmione pacifico dalle movenze delicate. Ha un folto pelo argentato, lungo, sottile e setoso, che gli copre i tristi occhi neri. Ha la capacità di rendersi invisibile [...]»</i> <br/>- Cit. Harry Potter<br/><br/>
+            The idea behind Camuflon is to <strong>improve the management of time</strong> in the office. This is done through an interpretation of so called <strong>beacons</strong>, small Bluetooth radio transimitter
+            which can be installed in any office. <br/>
+            Our smartphones comunicate with this beacons in order to - <strong>privately</strong> - register the time spent in each office or local, in order to provide
+            the employer <strong>anonimous statistics</strong> where his employees spend most of the time. So he may improve the use of certain spaces.<br/>
+            On the other hand, employees can check my themslef where they spent most of their time - maybe realizing they're too much time at the coffee machine?<br/><br/>
+            To summarize, the project consists of three different modules:<br/>
+          </div>
+        </div>
+      </div>
+      <div className="columns">
+        <div className="column">
+          <div className="box modulesBox">
+            <img src={process.env.PUBLIC_URL + "/img/dashboard.jpg"} /><br/>
+            <h5 className="title is-5">Employer and employee dashboard</h5>
+          </div>
+        </div>
+        <div className="column">
+          <div className="box modulesBox">
+            <img src={process.env.PUBLIC_URL + "/img/mobile.png"} /><br/>
+            <h5 className="title is-5">Employer and employee mobile app</h5>
+          </div>
+        </div>
+        <div className="column">
+          <div className="box modulesBox">
+            <img src={process.env.PUBLIC_URL + "/img/backend.png"} /><br/>
+            <h5 className="title is-5">Backend</h5>
+          </div>
+        </div>
+      </div><br/><br/>
+      <div className="columns">
+        <div className="column"><h3 className="header title is-3 has-text-primary">Who are the team members?</h3></div>
+      </div>
+      <div className="columns">
+        <div className="column presentationImgWrapper">
+          <div className="box">
+            <img src={process.env.PUBLIC_URL + "/img/Jaime-Venturini_1.jpeg"} className="presentationImg"/><br/>
+            <span>Jaime Venturini</span>
+          </div>
+        </div>
+        <div className="column presentationImgWrapper">
+          <div className="box">
+            <img src={process.env.PUBLIC_URL + "/img/Claudio-Vigliarolo_2.jpeg"} className="presentationImg"/><br/>
+            <span>Claudio Vigliarolo</span>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
