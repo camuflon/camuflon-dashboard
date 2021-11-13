@@ -170,14 +170,14 @@ function Home() {
       <div className="columns">
         <div className="column">
           <div className="box modulesBox">
-            <img src={process.env.PUBLIC_URL + "/img/dashboard.jpg"} /><br/>
-            <h5 className="title is-5">Employer and employee dashboard</h5>
+            <img src={process.env.PUBLIC_URL + "/img/mobile.png"} /><br/>
+            <h5 className="title is-5">Employer and employee mobile app</h5>
           </div>
         </div>
         <div className="column">
           <div className="box modulesBox">
-            <img src={process.env.PUBLIC_URL + "/img/mobile.png"} /><br/>
-            <h5 className="title is-5">Employer and employee mobile app</h5>
+            <img src={process.env.PUBLIC_URL + "/img/dashboard.jpg"} /><br/>
+            <h5 className="title is-5">Employer and employee dashboard</h5>
           </div>
         </div>
         <div className="column">
