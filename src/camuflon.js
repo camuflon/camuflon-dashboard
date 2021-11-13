@@ -10,6 +10,7 @@ import {
   useNavigate,
   withRouter
 } from "react-router-dom";
+import AuthService from "./services/auth.service";
 
 import Login from "./login";
 import Dashboard from "./routes/dashboard";
@@ -22,38 +23,38 @@ import './index.css';
 export default class Camuflon extends React.Component {
   constructor(props) {
     super(props);
-
-    console.log(this.props);
   }
 
   render() {
     return (
       <div id="main-container">
-        <Nav />
-        <main>
-          <section className="section">
-            <div className="container">
-              <Routes>
-                <Route path="/" element={<Placeholder />}>
-                  <Route path="login" element={<Login />}></Route>
-                  <Route path="dashboard" element={<Dashboard />}>
-                    <Route path="employer" element={<Employer />}></Route>
-                    <Route path="employee" element={<Employee />}></Route>
-                  </Route>
-                  <Route
-                    path="*"
-                    element={
-                      <main style={{ padding: "1rem" }}>
-                        <p>There's nothing here!</p>
-                      </main>
-                    }
-                  ></Route>
-                </Route>
-              </Routes>
-            </div>
-          </section>
-        </main>
-        <Footer />
+        <BrowserRouter>
+          <Nav />
+          <main>
+            <HomeImage />
+            <section className="section">
+              <div className="container">
+                  <Routes>
+                    <Route path="/" element={<Home />}></Route>
+                    <Route path="login" element={<Login />}></Route>
+                    <Route path="dashboard" element={<Dashboard />}>
+                      <Route path="employer" element={<Employer />}></Route>
+                      <Route path="employee" element={<Employee />}></Route>
+                    </Route>
+                    <Route
+                      path="*"
+                      element={
+                        <main style={{ padding: "1rem" }}>
+                          <p>There's nothing here!</p>
+                        </main>
+                      }
+                    ></Route>
+                  </Routes>
+              </div>
+            </section>
+          </main>
+          <Footer />
+        </BrowserRouter>
       </div>
     );
   }
@@ -74,7 +75,7 @@ function Nav() {
       endNavLinks = <div class="navbar-end">
                       <div class="navbar-item">
                         <div class="buttons">
-                          <a class="button is-light">Logout</a>
+                          <a class="button is-light" onClick={doLogout}>Logout</a>
                         </div>
                       </div>
                     </div>
@@ -133,17 +134,26 @@ function Footer() {
   )
 }
 
-export const Placeholder = () => {
-  /*const location = useLocation();
-  const navigate = useNavigate();
+function doLogout() {
+  AuthService.logout();
+}
 
-  useEffect(() => {
-    if(location.pathname == "/") {
-      //navigate("/login");
-    }
-  });*/
-
+function Home() {
   return (
-    <Outlet />
+    <div className="container">hey</div>
   );
+}
+
+function HomeImage() {
+  const location = useLocation();
+
+  if(location.pathname === "/") {
+    return(
+      <div className="homeImage"><img src={process.env.PUBLIC_URL + "/img/header.jpg"} /></div>
+    );
+  } else {
+    return(
+      <span></span>
+    );
+  }
 }

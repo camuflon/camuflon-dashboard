@@ -9,8 +9,6 @@ import Camuflon from "./camuflon";
 
 const rootElement = document.getElementById("root");
 render(
-  <BrowserRouter>
-    <Camuflon />
-  </BrowserRouter>,
+  <Camuflon />,
   rootElement
 );

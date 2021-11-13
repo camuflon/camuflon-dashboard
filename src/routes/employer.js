@@ -1,5 +1,6 @@
-import React from "react"
+import React, { Component } from 'react';
 import { Routes, Route, NavLink as Link } from "react-router-dom";
+import UserService from "../services/user.service";
 import { Bar } from 'react-chartjs-2';
 
 const data = {
@@ -41,32 +42,38 @@ const options = {
   },
 };
 
-export default function Employer() {
-  return (
-    <div>
-      <div className="columns">
-        <div className="column">
-          <h3 className="header title is-2 is-spaced">Hello Employer!</h3>
-        </div>
-      </div>
-      <div className="columns">
-        <div className="column">
-          <h4 className="header title is-4">Here you can manage and view the statistics of your rooms and beacons.</h4>
-        </div>
-      </div>
-      <br/>
+export default class Employer extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-      <div className="columns">
-        <div className="column is-one-third">
-          <AsideMenu />
+  render() {
+    return (
+      <div>
+        <div className="columns">
+          <div className="column">
+            <h3 className="header title is-2 is-spaced">Hello Employer!</h3>
+          </div>
         </div>
-        <div className="column">
-          <ListRooms/>
+        <div className="columns">
+          <div className="column">
+            <h4 className="header title is-4">Here you can manage and view the statistics of your rooms and beacons.</h4>
+          </div>
         </div>
-      </div>
+        <br/>
 
-    </div>
-  );
+        <div className="columns">
+          <div className="column is-one-third">
+            <AsideMenu />
+          </div>
+          <div className="column">
+            <ListRooms/>
+          </div>
+        </div>
+
+      </div>
+    );
+  }
 }
 
 export function AsideMenu() {
@@ -133,5 +140,5 @@ export function ListRooms() {
 }
 
 export function ListBeacons(roomId) {
-  
+
 }
