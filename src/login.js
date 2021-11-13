@@ -8,7 +8,6 @@ import {
   useNavigate,
   withRouter,
 } from "react-router-dom";
-//import {  } from "react-router";
 import AuthService from "./services/auth.service";
 
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
@@ -50,8 +49,7 @@ class Login extends Component {
       //if (this.checkBtn.context._errors.length === 0) {
       AuthService.login(this.state.identifier, this.state.password).then(
         (arg) => {
-          console.log(this.props);
-          this.props.history.push("/dashboard");
+          this.props.navigate("/dashboard");
           window.location.reload();
         },
         (error) => {
