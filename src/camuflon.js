@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { render } from "react-dom";
 import {
   BrowserRouter,
@@ -7,8 +7,10 @@ import {
   Outlet,
   Link,
   useLocation,
-  useNavigate
+  useNavigate,
+  withRouter
 } from "react-router-dom";
+
 import Login from "./login";
 import Dashboard from "./routes/dashboard";
 import Employer from "./routes/employer";
@@ -17,39 +19,50 @@ import Employee from "./routes/employee";
 import Bulma from 'bulma';
 import './index.css';
 
-export default function Camuflon() {
-  return (
-    <div id="main-container">
-      <Nav />
-      <main>
-        <section className="section">
-          <div className="container">
-            <Routes>
-              <Route path="/" element={<Placeholder />}>
-                <Route path="login" element={<Login />}></Route>
-                <Route path="dashboard" element={<Dashboard />}>
-                  <Route path="employer" element={<Employer />}></Route>
-                  <Route path="employee" element={<Employee />}></Route>
-                </Route>
-                <Route
-                  path="*"
-                  element={
-                    <main style={{ padding: "1rem" }}>
-                      <p>There's nothing here!</p>
-                    </main>
-                  }
-                ></Route>
-              </Route>
-            </Routes>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </div>
-  );
-}
+export default class Camuflon extends React.Component {
+  constructor(props) {
+    super(props);
 
-export function Nav() {
+    console.log(this.props);
+  }
+
+  render() {
+    return (
+      <div id="main-container">
+        <Nav />
+        <main>
+          <section className="section">
+            <div className="container">
+              <Routes>
+                <Route path="/" element={<Placeholder />}>
+                  <Route path="login" element={<Login />}></Route>
+                  <Route path="dashboard" element={<Dashboard />}>
+                    <Route path="employer" element={<Employer />}></Route>
+                    <Route path="employee" element={<Employee />}></Route>
+                  </Route>
+                  <Route
+                    path="*"
+                    element={
+                      <main style={{ padding: "1rem" }}>
+                        <p>There's nothing here!</p>
+                      </main>
+                    }
+                  ></Route>
+                </Route>
+              </Routes>
+            </div>
+          </section>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+}
+/*export default function Camuflon() {
+
+}*/
+
+function Nav() {
   const location = useLocation();
   let addNavLinks;
   let endNavLinks;
@@ -108,7 +121,7 @@ export function Nav() {
   )
 }
 
-export function Footer() {
+function Footer() {
   return(
     <footer className="footer">
       <div className="container">
@@ -121,14 +134,14 @@ export function Footer() {
 }
 
 export const Placeholder = () => {
-  const location = useLocation();
+  /*const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
     if(location.pathname == "/") {
       //navigate("/login");
     }
-  });
+  });*/
 
   return (
     <Outlet />
